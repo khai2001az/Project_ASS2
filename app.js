@@ -124,6 +124,7 @@ app.get('/',(req,res)=>{
     res.render('index',{loginName:userName})
 })
 
-var PORT = process.env.PORT || 5000;
-app.listen(PORT);
-console.log('Server is running at: '+ PORT);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`App listening at http://localhost:${PORT}`)
+})
