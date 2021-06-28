@@ -8,10 +8,15 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Product</title>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
-     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -21,16 +26,21 @@
             </button>
         </div>
     </nav>
+    <div class="container">
     <form action="/doInsert" method="post">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                name="txtName">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="txtName"
+                onblur="checkname();">
+                <span id="erorr-name"></span>
+                
 
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Price</label>
-            <input type="number" class="form-control" id="exampleInputPassword1" name="txtPrice">
+            <input type="number" class="form-control" id="exampleInputPassword1" name="txtPrice"
+                onblur="checknumber();">
+                <span id="error-num"></span>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Img</label>
@@ -38,6 +48,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary" value="Insert">Submit</button>
+        </div>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -48,6 +59,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+
+    {{!-- check validation --}}
+    <script>
+        function checkname() {
+            var name = document.getElementById("exampleInputEmail1").value;
+             var er = document.getElementById("erorr-name");
+            if (name == "" || name == null) {
+                er.innerHTML = ("You need to input name");
+            } else if (!isNaN(name)) {
+                er.innerHTML = ("Name need is string");
+            }
+        }
+
+        function checknumber() {
+            var num = document.getElementById("exampleInputPassword1").value;
+            var er = document.getElementById("error-num");
+            var minlength = "3";
+            var maxlength = "4";  
+            if (num == "" || num == null) {
+               er.innerHTML = "need to input num";
+            }else if(num.length >= minlength && num.length <= maxlength) {
+                return true;
+            }
+            else {
+                er.innerHTML = ("Please input between " + minlength + " and " + maxlength + " length");
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>

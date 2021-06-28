@@ -1,7 +1,6 @@
 {
   "name": "ass2",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "express": "^4.17.1",
@@ -13,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/khai2001az/project_ass2/issues"
   },
-  "homepage": "https://github.com/khai2001az/project_ass2#readme"
+  "homepage": "https://github.com/khai2001az/project_ass2#readme",
+  "description": ""
 }
