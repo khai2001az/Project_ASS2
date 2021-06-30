@@ -79,12 +79,16 @@
             var maxlength = "4";  
             if (num == "" || num == null) {
                er.innerHTML = "need to input num";
-            }else if(num.length >= minlength && num.length <= maxlength) {
+            }else(num.length >= minlength && num.length <= maxlength) {
                 return true;
             }
-            else {
+            else{
                 er.innerHTML = ("Please input between " + minlength + " and " + maxlength + " length");
                 return false;
+            }
+            else(num == true){
+                er.innerHTML = "";     
+                return num;   
             }
         }
     </script>

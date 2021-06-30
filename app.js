@@ -1,6 +1,7 @@
 const express = require('express')
 const hbs = require('hbs')
 const session = require('express-session');
+const { check, validationResult } = require ('express-validator');
 
 
 var app = express();
@@ -20,8 +21,6 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static('public'))
-
-var dsNotToDelete = ['ao','quan','bep','my goi'];
 
 const dbHandler = require('./databaseHandler')
 
@@ -91,27 +90,27 @@ app.post('/doInsert', async (req,res)=>{
     await dbHandler.insertOneIntoCollection(newProduct,"SanPham");
     res.render('index')
 })
-app.get('/register',(req,res)=>{
-    res.render('register')
-})
-app.post('/login',async (req,res)=>{
-    const nameInput = req.body.txtName;
-    const passInput = req.body.txtPassword;
-    const found = await dbHandler.checkUser(nameInput,passInput);
-    if(found){
-        req.session.username = nameInput;
-        res.render('index',{loginName:nameInput})       
-    }else{
-        res.render('index',{errorMsg:"Login failed!"})
-    }
-})
-app.post('/doRegister',async (req,res)=>{
-    const nameInput = req.body.txtName;
-    const passInput = req.body.txtPassword;
-    const newUser = {username:nameInput,password:passInput};
-    await dbHandler.insertOneIntoCollection(newUser,"users");
-    res.redirect('/');
-})
+// app.get('/register',(req,res)=>{
+//     res.render('register')
+// })
+// app.post('/login',async (req,res)=>{
+//     const nameInput = req.body.txtName;
+//     const passInput = req.body.txtPassword;
+//     const found = await dbHandler.checkUser(nameInput,passInput);
+//     if(found){
+//         req.session.username = nameInput;
+//         res.render('index',{loginName:nameInput})       
+//     }else{
+//         res.render('index',{errorMsg:"Login failed!"})
+//     }
+// })
+// app.post('/doRegister',async (req,res)=>{
+//     const nameInput = req.body.txtName;
+//     const passInput = req.body.txtPassword;
+//     const newUser = {username:nameInput,password:passInput};
+//     await dbHandler.insertOneIntoCollection(newUser,"users");
+//     res.redirect('/');
+// })
 app.get('/insert',(req,res)=>{
     res.render('insert')
 })
